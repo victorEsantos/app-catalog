@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "app-catalog",
-    "slug": "app-catalog",
+    "name": "Projeto PAC",
+    "slug": "Aplicativo-catalogo",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

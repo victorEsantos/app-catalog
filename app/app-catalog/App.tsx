@@ -1,26 +1,24 @@
+import "react-native-gesture-handler";
 import React from "react";
-import { View, Text ,StyleSheet} from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import * as Updates from "expo-updates";
+import Routes from "./src/routes";
 
-const App = () => {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.h1}>Alo</Text>
-    </View>
-  );
-};
-
-const styles = StyleSheet.create({
-    container: {
-      backgroundColor: "#069",
-      flex: 1,
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
-    },
-    h1: {
-        fontSize:24,
-        fontWeight:'700'
+export default function App() {
+  async function checkupdates() {
+    const update = await Updates.checkForUpdateAsync();
+    if (update.isAvailable) {
+      await Updates.fetchUpdateAsync();
+      await Updates.reloadAsync();
     }
-  });
+  }
 
-export default App;
+  React.useEffect(() => {
+    checkupdates();
+  }, []);
+  return (
+    <NavigationContainer>
+      <Routes />
+    </NavigationContainer>
+  );
+}
